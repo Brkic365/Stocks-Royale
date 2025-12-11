@@ -1,0 +1,48 @@
+// styles/components/TickerStrip.module.scss
+@import '../variables';
+
+.stripContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $gap;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.tickerCard {
+  background-color: rgba(128, 128, 128, 0.1);
+  background-clip: padding-box;
+  backdrop-filter: blur(8px) saturate(100%) contrast(100%);
+  padding: 1rem;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+
+  &:hover {
+    border-color: $accent-blue;
+  }
+
+  &.selected {
+    border-color: $accent-blue;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .symbol { font-weight: bold; }
+  .price { font-size: 1.25rem; font-family: $font-mono; }
+  .change { font-weight: 600; }
+  .positive { color: $success; }
+  .negative { color: $danger; }
+
+  .sparkline {
+    height: 3rem; // 48px
+    margin-top: 0.5rem;
+  }
+}

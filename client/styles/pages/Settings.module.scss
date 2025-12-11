@@ -1,0 +1,144 @@
+@import '../variables';
+
+.settingsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+}
+
+.header {
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
+
+.section {
+    background: $panel;
+    border-radius: $border-radius;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 1rem;
+    }
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: $text-secondary;
+        font-size: 0.875rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.875rem;
+        background: rgba($panel-light, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        color: $text-primary;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.2s;
+
+        &:focus {
+            background: rgba($panel-light, 0.8);
+            border-color: $accent-blue;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.toggleGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .toggleText {
+        h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        p {
+            font-size: 0.875rem;
+            color: $text-secondary;
+        }
+    }
+
+    .toggle {
+        width: 3rem;
+        height: 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        position: relative;
+        cursor: pointer;
+        transition: background 0.2s;
+
+        &.active {
+            background: $success;
+
+            .knob {
+                left: calc(100% - 1.25rem - 2px);
+            }
+        }
+
+        .knob {
+            width: 1.25rem;
+            height: 1.25rem;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: left 0.2s;
+        }
+    }
+}
+
+.button {
+    background: $accent-blue;
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+        background: lighten($accent-blue, 5%);
+    }
+
+    &.danger {
+        background: rgba($danger, 0.1);
+        color: $danger;
+
+        &:hover {
+            background: rgba($danger, 0.2);
+        }
+    }
+}

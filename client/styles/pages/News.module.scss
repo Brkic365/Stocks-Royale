@@ -1,0 +1,144 @@
+@import '../variables';
+
+.newsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .liveIndicator {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: $danger;
+        font-weight: 600;
+        font-size: 0.875rem;
+
+        &::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: $danger;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+    }
+}
+
+.newsFeed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.newsCard {
+    background: $panel;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: $border-radius;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.2s, background 0.2s;
+    animation: slideIn 0.5s ease-out;
+
+    &:hover {
+        transform: translateY(-2px);
+        background: lighten($panel, 2%);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .iconWrapper {
+        flex-shrink: 0;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+
+        &.positive {
+            background: rgba($success, 0.1);
+            color: $success;
+        }
+
+        &.negative {
+            background: rgba($danger, 0.1);
+            color: $danger;
+        }
+    }
+
+    .content {
+        flex-grow: 1;
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+
+            .symbol {
+                font-weight: 700;
+                color: $accent-blue;
+                background: rgba($accent-blue, 0.1);
+                padding: 0.25rem 0.5rem;
+                border-radius: 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            .time {
+                color: $text-secondary;
+                font-size: 0.875rem;
+            }
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        p {
+            color: $text-secondary;
+            font-size: 0.9375rem;
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
