@@ -1,0 +1,119 @@
+@import '../variables';
+
+.authContainer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #122052 0%, #825485 100%);
+}
+
+.authCard {
+    background: rgba($panel, 0.9);
+    backdrop-filter: blur(12px);
+    border-radius: $border-radius * 1.5;
+    padding: 3rem;
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: #fff;
+    }
+
+    .subtitle {
+        color: $text-secondary;
+        margin-bottom: 2rem;
+    }
+}
+
+.error {
+    background: rgba($danger, 0.1);
+    border: 1px solid $danger;
+    color: $danger;
+    padding: 0.75rem 1rem;
+    border-radius: $border-radius;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+        color: $text-primary;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    input {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: $border-radius;
+        padding: 0.875rem 1rem;
+        color: $text-primary;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+
+        &:focus {
+            outline: none;
+            border-color: $accent-blue;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        &::placeholder {
+            color: $text-secondary;
+        }
+    }
+}
+
+.submitButton {
+    background: $accent-blue;
+    color: #fff;
+    border: none;
+    border-radius: $border-radius;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+
+    &:hover:not(:disabled) {
+        background: lighten($accent-blue, 10%);
+        transform: translateY(-2px);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.switchAuth {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: $text-secondary;
+    font-size: 0.9rem;
+
+    a {
+        color: $accent-blue;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

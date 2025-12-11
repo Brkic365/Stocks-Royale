@@ -1,0 +1,149 @@
+@import '../variables';
+
+.marketContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
+
+.searchBar {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+
+    input {
+        width: 100%;
+        padding: 0.875rem 1rem 0.875rem 2.5rem;
+        background: rgba($panel-light, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        color: $text-primary;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.2s;
+        backdrop-filter: blur(5px);
+
+        &:focus {
+            background: rgba($panel-light, 0.8);
+            border-color: rgba($accent-blue, 0.5);
+            box-shadow: 0 0 15px rgba($accent-blue, 0.1);
+        }
+
+        &::placeholder {
+            color: $text-secondary;
+        }
+    }
+
+    svg {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $text-secondary;
+        pointer-events: none;
+    }
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: $text-secondary;
+    }
+}
+
+.marketGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.marketCard {
+    background: $panel;
+    border-radius: $border-radius;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.2s, background 0.2s;
+    cursor: pointer;
+    border: 1px solid transparent;
+
+    &:hover {
+        transform: translateY(-4px);
+        background: lighten($panel, 2%);
+        border-color: rgba($accent-blue, 0.2);
+    }
+
+    .cardHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .symbol {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: $text-primary;
+        }
+
+        .name {
+            font-size: 0.875rem;
+            color: $text-secondary;
+            margin-top: 0.25rem;
+        }
+
+        .price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: right;
+        }
+    }
+
+    .cardFooter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+
+        .change {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.5rem;
+
+            &.positive {
+                color: $success;
+                background: rgba($success, 0.1);
+            }
+
+            &.negative {
+                color: $danger;
+                background: rgba($danger, 0.1);
+            }
+        }
+
+        .volume {
+            font-size: 0.75rem;
+            color: $text-secondary;
+        }
+    }
+}

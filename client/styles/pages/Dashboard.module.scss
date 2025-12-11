@@ -1,0 +1,51 @@
+@import '../variables';
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $gap;
+  width: 100%;
+  max-width: 1600px; // Limit max width for large screens
+  margin: 0 auto;
+}
+
+.dashboardLeft {
+  grid-column: span 12;
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+
+  @media (min-width: 1280px) {
+    grid-column: span 9;
+  }
+}
+
+.dashboardRight {
+  grid-column: span 12;
+
+  @media (min-width: 1280px) {
+    grid-column: span 3;
+  }
+}
+
+.loadingScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.25rem;
+  color: $text-secondary;
+}
+
+.chartLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($panel, 0.5);
+  border-radius: $border-radius;
+  min-height: 450px;
+  flex-grow: 1;
+  color: $text-secondary;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}

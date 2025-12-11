@@ -1,0 +1,175 @@
+@import '../variables';
+
+.portfolioContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+.heroCard {
+    background: linear-gradient(135deg, rgba($accent-blue, 0.8) 0%, rgba($accent-blue, 0.4) 100%);
+    border-radius: $border-radius;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+
+    .label {
+        text-transform: uppercase;
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 0.5rem;
+    }
+
+    .balance {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+
+        span {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+
+    .stats {
+        display: flex;
+        gap: 3rem;
+        margin-top: 1rem;
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+
+            .statLabel {
+                font-size: 0.875rem;
+                color: rgba(255, 255, 255, 0.7);
+                margin-bottom: 0.25rem;
+            }
+
+            .statValue {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: white;
+
+                &.profit {
+                    color: $success; // Maybe make this white or lighter green on the blue bg
+                    text-shadow: 0 0 10px rgba($success, 0.5);
+                }
+            }
+        }
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+}
+
+.holdingsSection {
+    grid-column: span 12;
+
+    @media (min-width: 1024px) {
+        grid-column: span 8;
+    }
+
+    background: $panel;
+    border-radius: $border-radius;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    h2 {
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+}
+
+.allocationSection {
+    grid-column: span 12;
+
+    @media (min-width: 1024px) {
+        grid-column: span 4;
+    }
+
+    background: $panel;
+    border-radius: $border-radius;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .chartPlaceholder {
+        flex-grow: 1;
+        min-height: 250px;
+        background: rgba($panel-light, 0.3);
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text-secondary;
+    }
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+        text-align: left;
+        padding: 1rem;
+        color: $text-secondary;
+        font-weight: 500;
+        font-size: 0.875rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    td {
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.9375rem;
+
+        &:first-child {
+            font-weight: 600;
+            color: $text-primary;
+        }
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+}
+
+.change {
+    &.positive {
+        color: $success;
+    }
+
+    &.negative {
+        color: $danger;
+    }
+}
