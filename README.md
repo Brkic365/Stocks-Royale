@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stocks Royale
+
+Stocks Royale is a real-time stock trading and betting platform that combines traditional market mechanics with gamified elements.
+
+## Features
+
+- **Real-time Market Data**: Interactive candlestick charts powered by lightweight-charts.
+- **Binary Betting**: Place "Green or Red" bets on short-term price movements.
+- **Portfolio Management**: Track holdings, positions, and account value in real-time.
+- **Gamified Trading**:  Unique mechanics to make trading more engaging.
+
+## Tech Stack
+
+### Client
+- **Framework**: Next.js 16 (React 19)
+- **Styling**: SCSS / Sass
+- **Charts**: Lightweight Charts, Recharts
+
+### Server
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: PostgreSQL
+- **Real-time**: Socket.io
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js (v18+ recommended)
+- PostgreSQL database
+- npm or bun
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/Brkic365/Stocks-Royale.git
+    cd Stocks-Royale
+    ```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+2.  **Server Setup**:
+    ```bash
+    cd server
+    npm install
+    # Set up your .env file with DB credentials
+    npm run dev
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3.  **Client Setup**:
+    ```bash
+    cd client
+    npm install
+    npm run dev
+    ```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4.  **Access the App**:
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
