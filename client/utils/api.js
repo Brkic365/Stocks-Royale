@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken } from './auth';
 
 // Hardcoded to 4000 to fix configuration mismatch
-export const API_URL = 'http://localhost:4000';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 const api = axios.create({
     baseURL: `${API_URL}/api`,

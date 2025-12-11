@@ -5,7 +5,7 @@ import { getAuthHeader } from '@/utils/auth';
 import { useAuth } from '@/contexts/AuthContext';
 import useSocket from './useSocket';
 
-const API_URL = 'http://localhost:4000/api';
+const API_URL = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000') + '/api';
 
 export default function usePositions() {
     const [positions, setPositions] = useState([]);

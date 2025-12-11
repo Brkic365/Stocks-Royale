@@ -16,7 +16,7 @@ const server = http.createServer(app);
 
 // CORS configuration
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://stocks-royale.vercel.app"],
   credentials: true
 }));
 
@@ -32,7 +32,7 @@ console.log("Server reloading... " + Date.now());
 
 const io = new SocketIO(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://stocks-royale.vercel.app"],
     credentials: true
   },
 });
