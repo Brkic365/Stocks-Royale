@@ -9,18 +9,65 @@ export default function NewsPage() {
     const socket = useSocket();
 
     useEffect(() => {
-        if (!socket) return;
+        let isMounted = true;
 
-        const handleNewsUpdate = (newsItem) => {
-            setNews(prev => [newsItem, ...prev].slice(0, 20)); // Keep last 20 items
+        // Fetch initial news from API
+        const fetchNews = async () => {
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (isMounted) {
+                        setNews(prev => {
+                            // Merge with existing (socket updates might have come in)
+                            const merged = [...prev];
+                            data.forEach(item => {
+                                if (!merged.some(p => p.id === item.id)) {
+                                    merged.push(item);
+                                }
+                            });
+                            // Sort by timestamp desc
+                            merged.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                            return merged.slice(0, 20);
+                        });
+                    }
+                }
+            } catch (err) {
+                console.error("Failed to fetch news:", err);
+            }
         };
 
+        fetchNews();
+
+        if (!socket) return;
+
+        // Listen for initial_news from socket as well (redundancy/realtime catchup)
+        const handleInitialNews = (history) => {
+            setNews(prev => {
+                const merged = [...prev];
+                history.forEach(item => {
+                    if (!merged.some(p => p.id === item.id)) {
+                        merged.push(item);
+                    }
+                });
+                merged.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                return merged.slice(0, 20);
+            });
+        };
+
+        const handleNewsUpdate = (newsItem) => {
+            setNews(prev => {
+                if (prev.some(item => item.id === newsItem.id)) return prev;
+                return [newsItem, ...prev].slice(0, 20);
+            });
+        };
+
+        socket.on('initial_news', handleInitialNews);
         socket.on('news_update', handleNewsUpdate);
 
-        // Initial mock news to populate empty state if needed, or wait for socket
-        // setNews(mockInitialNews);
-
         return () => {
+            isMounted = false;
+            socket.off('initial_news', handleInitialNews);
             socket.off('news_update', handleNewsUpdate);
         };
     }, [socket]);

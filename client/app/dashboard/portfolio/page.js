@@ -105,7 +105,7 @@ function PortfolioContent() {
                     </div>
                     <div className={styles.stat}>
                         <span className={styles.statLabel}>Total Profit</span>
-                        <span className={`${styles.statValue} ${styles.profit}`}>
+                        <span className={`${styles.statValue} ${totalProfit >= 0 ? styles.profit : styles.loss}`}>
                             {totalProfit >= 0 ? '+' : ''}{totalProfit.toLocaleString(undefined, { maximumFractionDigits: 2 })} ({profitPercent.toFixed(2)}%)
                         </span>
                     </div>

@@ -5,7 +5,6 @@ import styles from '../../styles/components/TradePanel.module.scss';
 import { getToken } from '@/utils/auth';
 import { useAuth } from '@/contexts/AuthContext';
 import { useHoldings } from '../../contexts/HoldingsContext';
-import BinaryBetting from '../../components/BinaryBetting';
 
 // Helper component for buttons
 const ButtonGroup = ({ options, selected, onSelect }) => (
@@ -23,7 +22,6 @@ const ButtonGroup = ({ options, selected, onSelect }) => (
 );
 
 export default function TradePanel({ stock }) {
-  const [mode, setMode] = useState('STANDARD'); // STANDARD | BINARY
   const [tradeType, setTradeType] = useState('BUY');
   const [amount, setAmount] = useState('500.00');
   const [leverage, setLeverage] = useState(1);
@@ -180,40 +178,8 @@ export default function TradePanel({ stock }) {
     }
   };
 
-
-
-  // Common Header Toggle
-  const ModeToggle = () => (
-    <div className={styles.tradeHeader}>
-      <div className={styles.modeToggle}>
-        <button
-          className={mode === 'STANDARD' ? styles.modeActive : ''}
-          onClick={() => setMode('STANDARD')}
-        >
-          Standard
-        </button>
-        <button
-          className={mode === 'BINARY' ? styles.modeActive : ''}
-          onClick={() => setMode('BINARY')}
-        >
-          Binary
-        </button>
-      </div>
-    </div>
-  );
-
   if (!stock) {
     return <div className={styles.panelContainer}></div>;
-  }
-
-  // BINARY MODE RENDER
-  if (mode === 'BINARY') {
-    return (
-      <div className={styles.panelContainer}>
-        <ModeToggle />
-        <BinaryBetting activeStock={stock} />
-      </div>
-    );
   }
 
   const numericAmount = parseFloat(amount) || 0;
@@ -221,7 +187,6 @@ export default function TradePanel({ stock }) {
   // STANDARD MODE RENDER
   return (
     <div className={styles.panelContainer}>
-      <ModeToggle />
 
       <div className={styles.tradeTypeToggle}>
         <div className={`${styles.slider} ${tradeType === 'SELL' ? styles.sliderSell : ''}`} />

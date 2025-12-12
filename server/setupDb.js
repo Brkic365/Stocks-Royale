@@ -120,6 +120,23 @@ async function setup() {
             );
         `);
 
+        // Create news table
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS news (
+                id SERIAL PRIMARY KEY,
+                symbol VARCHAR(10) NOT NULL,
+                headline TEXT NOT NULL,
+                sentiment VARCHAR(10) CHECK (sentiment IN ('POSITIVE', 'NEGATIVE')),
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
+
+        // Add preferences column to users if it doesn't exist
+        await pool.query(`
+            ALTER TABLE users 
+            ADD COLUMN IF NOT EXISTS preferences JSONB DEFAULT '{"notifications": {"push": true, "email": false}}'::jsonb;
+        `);
+
         console.log("Tables created.");
 
         console.log("Seeding stocks...");

@@ -8,9 +8,10 @@ import setupSockets from "./ws/socket.js";
 import stockRoutes from "./routes/stockRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import positionRoutes from "./routes/positionRoutes.js";
-import betRoutes from "./routes/betRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import newsRoutes from "./routes/newsRoutes.js";
 import { getAllStocks } from "./models/stockModel.js";
-
+// Initialize express app
 const app = express();
 const server = http.createServer(app);
 
@@ -26,8 +27,9 @@ app.use(express.json());
 // API Routes
 app.use("/api", stockRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 app.use("/api/positions", positionRoutes);
-app.use("/api/bets", betRoutes);
+app.use("/api/news", newsRoutes);
 console.log("Server reloading... " + Date.now());
 
 const io = new SocketIO(server, {

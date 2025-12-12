@@ -24,7 +24,6 @@ export default function Sidebar() {
 
     const navItems = [
         { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
-        { icon: LineChart, label: 'Market', href: '/dashboard/market' },
         { icon: Wallet, label: 'Portfolio', href: '/dashboard/portfolio' },
         { icon: Newspaper, label: 'News', href: '/dashboard/news' },
         { icon: Settings, label: 'Settings', href: '/dashboard/settings' },
